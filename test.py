@@ -30,10 +30,12 @@ def is_convex(points):
 
     return 1
 
+
 points = []
 for _ in range(4):
     x, y = map(int, input().split())
     points.append((x, y))
+
 
 result = is_convex(points)
 print(result)

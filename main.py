@@ -70,7 +70,7 @@ def main():
             change_selected_text_layout()
             audio.sayReady("start")
 
-        elif check(text, ["удали комментарии", "удали комментарий"]) >= 0:
+        elif check(text, ["удали комментарии", "удали комментарий", "убери комментарии"]) >= 0:
             audio.sayReady("start")
             code = get_selected_text().splitlines()
             codeChange = []

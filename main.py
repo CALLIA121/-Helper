@@ -35,6 +35,9 @@ def main():
             print("ниче не сказали")
             st = True
             print("окончание обработки")
+        
+        elif check(text, ['отмена']) >= 0:
+            audio.sayReady("CanselFrase")
 
         elif check(text, ["напиши", "впиши"]) >= 0:
             index = check(text, ["напиши", "впиши"])  # hello привет
@@ -200,30 +203,24 @@ def main():
                 audio.sayReady("ошибка")
 
         elif check(text, ["заблокируй", "заблочь"]) >= 0:  # LL
-            if 'отмена' not in text:
-                print('''hotkey(['winleft', "L"])''')
-                os.system(
-                    '%SystemRoot%/system32/rundll32.exe USER32.DLL LockWorkStation')
-                st = True
-                print("окончание обработки")
-            else:
-                audio.sayReady("CanselFrase")
+            print('''hotkey(['winleft', "L"])''')
+            os.system(
+                '%SystemRoot%/system32/rundll32.exe USER32.DLL LockWorkStation')
+            st = True
+            print("окончание обработки")
+                
 
         elif check(text, ["отключайся", "выключайся"]) >= 0:
-            if 'отмена' not in text:
-                audio.sayReady("bye")
-                stop = True
-            else:
-                audio.sayReady("CanselFrase")
+            audio.sayReady("bye")
+            stop = True
+
 
         elif check(text, ["заверши работу"]) >= 0:
-            if 'отмена' not in text:
-                os.system('shutdown /s /t 0')
-                LT = time.time() - 2 * s.TIMEOUT
-                st = True
-                print("окончание обработки")
-            else:
-                audio.sayReady("CanselFrase")
+            os.system('shutdown /s /t 0')
+            LT = time.time() - 2 * s.TIMEOUT
+            st = True
+            print("окончание обработки")
+
 
         elif check(text, ["спасибо", "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
             st = True

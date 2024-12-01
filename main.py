@@ -67,6 +67,19 @@ def main():
             change_selected_text_layout()
             audio.sayReady("start")
 
+        elif check(text, ["удали коментарии"]) >= 0:
+            audio.sayReady("start")
+            code = get_text().splitlines()
+            codeChange = []
+            for line in code:
+                if '#' in line:
+                    lineChange = line[:line.index('#')]
+                else:
+                    lineChange = line
+                codeChange.append(lineChange)
+            code = '\n'.join(codeChange)
+            type_text(code)
+
         elif check(text, ["переведи"]) >= 0:
             audio.sayReady("start")
             try:
@@ -264,6 +277,7 @@ if __name__ == '__main__':
                            float_to_fraction_with_reading,
                            translate_text,
                            get_selected_text,
+                           get_text,
                            GogoleSearch,
                            SearchHTTPS,
                            InitMy)

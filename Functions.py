@@ -6,16 +6,24 @@ import time
 from googletrans import Translator
 translator = Translator()
 
+
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def InitMy():
     global gui
     import pyautogui as gui
 
-def hotkey(keys:list):
+
+def hotkey(keys: list):
     gui.hotkey(keys)
     time.sleep(0.1)
+
+
+def get_text():
+    selected_text = pyperclip.paste()
+    return selected_text
 
 
 def get_selected_text():
@@ -25,9 +33,11 @@ def get_selected_text():
     selected_text = pyperclip.paste()
     return selected_text
 
+
 def type_text(text):
     pyperclip.copy(text)
     gui.hotkey('ctrl', 'v')
+
 
 def translate_text():
 
@@ -50,6 +60,7 @@ def translate_text():
 
         return translation.text
 
+
 def is_periodic(number):
     # Преобразуем число в строку и удаляем десятичную точку
     decimal_str = str(number).split('.')[1]
@@ -58,6 +69,7 @@ def is_periodic(number):
         if decimal_str[:i] * (len(decimal_str) // i) == decimal_str:
             return True
     return False
+
 
 def float_to_fraction(number):
     if is_periodic(number):
@@ -73,6 +85,7 @@ def float_to_fraction(number):
     else:
         return number
 
+
 def drob_to_words(d):
     d1, d2 = map(int, d.split("/"))
     if d1 % 10 == 1:
@@ -82,7 +95,7 @@ def drob_to_words(d):
             if d // 10 * 10 == 0:
                 reed1 = "одна"
             else:
-                reed1 = str(d // 10 * 10)  + " одна"
+                reed1 = str(d // 10 * 10) + " одна"
     elif d1 % 10 == 2:
         if d1 % 100 == 12:
             reed1 = str(d1)
@@ -93,9 +106,11 @@ def drob_to_words(d):
                 reed1 = str(d1 // 10 * 10) + " две"
     else:
         reed1 = str(d1)
-    ddown = {"1":"ых", "2":"ых", "3":"их", "4":"ых", "5":"ых", "6":"ых", "7":"ых", "8":"ых", "9":"ых", "0":"ых"}
+    ddown = {"1": "ых", "2": "ых", "3": "их", "4": "ых", "5": "ых",
+             "6": "ых", "7": "ых", "8": "ых", "9": "ых", "0": "ых"}
     reed2 = str(d2) + "-" + ddown[str(d2)]
     return reed1 + " " + reed2
+
 
 def read_fraction(value):
     if isinstance(value, float):
@@ -119,9 +134,11 @@ def read_fraction(value):
     else:
         return str(value)
 
+
 def float_to_fraction_with_reading(number):
     fraction = float_to_fraction(number)
     return read_fraction(fraction)
+
 
 def change_layout(text):
     # Словари для соответствия символов в разных раскладках
@@ -150,11 +167,13 @@ def change_layout(text):
     converted_text = ''.join(layout_dict.get(char, char) for char in text)
     return converted_text
 
+
 def change_selected_text_layout():
     text = get_selected_text()
     if text != "":
         converted_text = change_layout(text)
         type_text(converted_text)
+
 
 def GogoleSearch(qvery):
     try:
@@ -162,6 +181,7 @@ def GogoleSearch(qvery):
         return True
     except Exception as e:
         return False
+
 
 def SearchHTTPS(qvery):
     try:

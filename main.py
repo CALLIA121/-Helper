@@ -35,7 +35,7 @@ def main():
             print("ниче не сказали")
             st = True
             print("окончание обработки")
-        
+
         elif check(text, ['отмена']) >= 0:
             audio.sayReady("CanselFrase")
 
@@ -208,12 +208,10 @@ def main():
                 '%SystemRoot%/system32/rundll32.exe USER32.DLL LockWorkStation')
             st = True
             print("окончание обработки")
-                
 
         elif check(text, ["отключайся", "выключайся"]) >= 0:
             audio.sayReady("bye")
             stop = True
-
 
         elif check(text, ["заверши работу"]) >= 0:
             os.system('shutdown /s /t 0')
@@ -221,6 +219,10 @@ def main():
             st = True
             print("окончание обработки")
 
+        elif check(text, ["иди", 'пошёл', 'тупой', 'заткнись', 'дебил', 'дурак']) >= 0:
+            st = True
+            print("окончание обработки")
+            audio.play('sound/stopFrase2.mp3')
 
         elif check(text, ["спасибо", "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
             st = True
@@ -229,11 +231,6 @@ def main():
                 audio.play('sound/stopFrase0.mp3')
             elif "спасибо" in text:
                 audio.play('sound/stopFrase1.mp3')
-
-        elif check(text, ["иди", 'пошёл', 'тупой', 'заткнись', 'дебил', 'дурак']) >= 0:
-            st = True
-            print("окончание обработки")
-            audio.play('sound/stopFrase2.mp3')
 
         else:
             audio.say('я такого не умею')

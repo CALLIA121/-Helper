@@ -42,9 +42,10 @@ def main():
             print("пишем:", towrite)
             type_text(towrite)
             audio.sayReady("start")
-        
+
         elif check(text, ["загуглить", "загугли", 'если']) >= 0:
-            index = check(text, ["загуглить", "загугли", 'если'])  # hello привет
+            # hello привет
+            index = check(text, ["загуглить", "загугли", 'если'])
             togoogle = " ".join(textSps[index+1:])
             if GogoleSearch(togoogle):
                 audio.sayReady("start")
@@ -53,7 +54,8 @@ def main():
                 audio.sayReady("err")
 
         elif check(text, ["как", "где", "что такое", "сколько это"]) >= 0:
-            index = check(text, ["как", "где", "что такое", "сколько это"])  # hello привет
+            index = check(text, ["как", "где", "что такое",
+                          "сколько это"])  # hello привет
             togoogle = " ".join(textSps[index:])
             if GogoleSearch(togoogle):
                 audio.sayReady("start")
@@ -217,7 +219,7 @@ def main():
                 audio.play('sound/stopFrase0.mp3')
             elif "спасибо" in text:
                 audio.play('sound/stopFrase1.mp3')
-        
+
         elif check(text, ["иди", 'пошёл', 'тупой', 'заткнись', 'дебил', 'дурак']) >= 0:
             st = True
             print("окончание обработки")

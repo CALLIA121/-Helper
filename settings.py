@@ -4,7 +4,7 @@ TIMEOUT = 10
 HURD_UPDATE = False
 VOISE_NAME = 'Russian'
 
-PATH = "D:/!PycharmProjects/!Helper/"
+PATH = "D:/!HelperData/"
 
 Say = False
 DBlist = {1: "Programs"}

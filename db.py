@@ -4,9 +4,6 @@ from settings import connect, cursor, DBlist, Say
 
 Say = False
 DBlist = {1: "Programs"}  # СЮДЫ СПИСОК ТАБЛИЦ
-connect = sq.connect(
-    "D:\!PycharmProjects\!Helper\db_helper.db", check_same_thread=False)
-cursor = connect.cursor()
 
 
 def WriteData(DB: int,

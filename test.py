@@ -1,41 +1,30 @@
-def is_convex(points):
-    def orientation(p, q, r):
-        val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
-        if val == 0:
-            return 0
-        elif val > 0:
-            return 1
-        else:
-            return 2
+import math
 
-    n = len(points)
-    if n != 4:
-        return 0
+
+def is_convex_quadrilateral(points):
 
     if len(set(points)) != 4:
         return 0
 
-    for i in range(n):
-        for j in range(i + 1, n):
-            for k in range(j + 1, n):
-                if orientation(points[i], points[j], points[k]) == 0:
-                    return 0
+    center_x = sum(x for x, y in points) / 4
+    center_y = sum(y for x, y in points) / 4
+    points.sort(key=lambda p: (math.atan2(p[1] - center_y, p[0] - center_x)))
 
-    prev = orientation(points[0], points[1], points[2])
-    for i in range(1, n):
-        curr = orientation(points[i], points[(i + 1) % n], points[(i + 2) % n])
-        if curr != prev:
-            return 0
-        prev = curr
+    def cross_product_sign(o, a, b):
 
-    return 1
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
 
+    signs = []
+    for i in range(4):
+        o = points[i]
+        a = points[(i + 1) % 4]
+        b = points[(i + 2) % 4]
+        signs.append(cross_product_sign(o, a, b))
 
-points = []
-for _ in range(4):
-    x, y = map(int, input().split())
-    points.append((x, y))
+    return 1 if all(s > 0 for s in signs) or all(s < 0 for s in signs) else 0
 
 
-result = is_convex(points)
-print(result)
+with open("input.txt", "r") as f:
+    points = [tuple(map(int, line.split())) for line in f]
+
+print(is_convex_quadrilateral(points))

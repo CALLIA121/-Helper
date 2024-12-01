@@ -67,9 +67,9 @@ def main():
             change_selected_text_layout()
             audio.sayReady("start")
 
-        elif check(text, ["удали коментарии"]) >= 0:
+        elif check(text, ["удали комментарии", "удали комментарий"]) >= 0:
             audio.sayReady("start")
-            code = get_text().splitlines()
+            code = get_selected_text().splitlines()
             codeChange = []
             for line in code:
                 if '#' in line:

@@ -287,5 +287,6 @@ if __name__ == '__main__':
     audio.init()
     text = get_text()
     if text == "!change":
+        print('возврат раскладки')
         hotkey(['alt', 'shift'])
     main()

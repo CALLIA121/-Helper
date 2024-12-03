@@ -282,7 +282,6 @@ if __name__ == '__main__':
                            InitMy,
                            hotkey)
     import threading
-    # threading.Thread(target=audio.Buffer, daemon=True, name="Buffer").start() 
     InitMy()
     audio.init()
     text = get_text()

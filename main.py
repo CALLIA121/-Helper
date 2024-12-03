@@ -279,25 +279,13 @@ if __name__ == '__main__':
                            get_text,
                            GogoleSearch,
                            SearchHTTPS,
-                           InitMy)
+                           InitMy,
+                           hotkey)
     import threading
     # threading.Thread(target=audio.Buffer, daemon=True, name="Buffer").start()
     InitMy()
     audio.init()
-    """
-    audio._saveSound('start', 'start0')
-    audio._saveSound('В процессе', 'start1')
-    audio._saveSound('Будет сделано', 'start2')
-    audio._saveSound('Так точно', 'start3')
-    audio._saveSound('Хорошо', 'start4')
-
-    audio._saveSound('Пока', 'bye0')
-    audio._saveSound('До связи', 'bye1')
-
-    audio._saveSound('произошла ошибка', 'err')
-
-    audio._saveSound('Спасибо!', 'stopFrase1')
-    audio._saveSound('Всегда к вашим услугам', 'stopFrase2')
-    audio._saveSound('За что?!', 'stopFrase3')
-    """
+    text = get_text()
+    if text == "!change":
+        hotkey(['alt', 'shift'])
     main()

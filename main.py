@@ -61,6 +61,12 @@ def main():
                 '''https://youtu.be/hbWVFMjK1Dk?t=2''')
             audio.say('Мои поздравления!')
 
+        elif check(text, ['дракон', 'я решил']) >= 0:
+            SearchHTTPS(
+                '''https://www.youtube.com/watch?v=skpQWo1WL9M&t=11s''')
+            time.sleep(0.5)
+            hotkey('f')
+
         elif check(text, ["как", "где", "что такое", "сколько это"]) >= 0:
             index = check(text, ["как", "где", "что такое",
                           "сколько это"])  # hello привет

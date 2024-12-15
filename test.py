@@ -1,16 +1,49 @@
-import pyperclip
-import pyautogui as gui
-text = pyperclip.paste()
-gui.typewrite(text, 0.1)
+n = int(input())
+cmd = list(input())
+matrix = [[0] * 2 * n for _ in range(2 * n)]
+x, y, i = n, n, 1
+matrix[y][x] = i
+for cmdC in cmd:
+    if cmdC == 'U':
+        y += 1
+
+    elif cmdC == 'D':
+        y -= 1
+
+    elif cmdC == 'L':
+        x -= 1
+
+    elif cmdC == 'R':
+        x += 1
+
+    i += 1
+    matrix[y][x] = i
+
+
+dict = {}
+q = int(input())
+for i in range(q):
+    cmd = input()
+    if cmd in dict.keys():
+        ans = dict[cmd]
+    else:
+        s = int(cmd[2:]) + n
+        if cmd[0] == "2":
+            ans = sum(matrix[s])
+            dict[cmd] = ans
+        else:
+            ans = sum([matrix[i][s] for i in range(n * 2)])
+            dict[cmd] = ans
+    print(ans)
 
 """
-A - 100
+A - 0
 B - 81 
 C - 100
 D - 60
 E - 100
-F - 60
-G - 100
+F - 0
+G - 0
 H - 65
 
 Пиши код без функций и коментариев.

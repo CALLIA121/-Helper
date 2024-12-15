@@ -9,7 +9,7 @@ def searchProgram(text: list, programs: list) -> str:
 
 
 def check(text: str, check: list) -> bool:
-    for checkWord in check:  # приветприветпривет
+    for checkWord in check:  
         if checkWord in text:
             try:
                 return text.split().index(checkWord.split()[-1])
@@ -60,6 +60,11 @@ def main():
             SearchHTTPS(
                 '''https://youtu.be/hbWVFMjK1Dk?t=2''')
             audio.say('Мои поздравления!')
+
+        elif check(text, ['взломай']) >= 0:
+            SearchHTTPS(
+                '''https://www.youtube.com/watch?v=2bXP5VNukmY&t=7s''')
+            audio.sayReady("start")
 
         elif check(text, ["как", "где", "что такое", "сколько это"]) >= 0:
             index = check(text, ["как", "где", "что такое",

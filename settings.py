@@ -4,10 +4,21 @@ TIMEOUT = 10
 HURD_UPDATE = False
 VOISE_NAME = 'Russian'
 
-PATH = "D:/!HelperData/"
+PATH = None
+
+with open('config.txt', 'r', encoding='utf-8') as f:
+    lines = [line.strip().split(';') for line in f.readlines()]
+    for atribute, value in lines:
+        if atribute == 'PATH':
+            PATH = value
+
+if PATH is None:
+    print('Нет PATH')
+    exit(0)
+
 
 Say = False
-DBlist = {1: "Programs"}
+DBlist = {1: "Programs", 2: "Data"}
 DB_PATH = PATH + 'db_helper.db'
 
 
@@ -39,3 +50,29 @@ ReadyMadePfrase = [
 
 connect = sq.connect(DB_PATH, check_same_thread=False)
 cursor = connect.cursor()
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Programs (
+    ID   INTEGER PRIMARY KEY ASC AUTOINCREMENT
+                 UNIQUE
+                 NOT NULL
+                 DEFAULT ( -1),
+    Name TEXT    UNIQUE
+                 NOT NULL
+                 DEFAULT None,
+    Path TEXT    UNIQUE
+                 NOT NULL
+                 DEFAULT None
+);
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Data (
+    ID  TEXT PRIMARY KEY
+             NOT NULL
+             UNIQUE
+             DEFAULT (0),
+    Val TEXT
+);
+''')
+connect.commit()

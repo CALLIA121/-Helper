@@ -2,9 +2,6 @@ import sqlite3 as sq
 
 from settings import connect, cursor, DBlist, Say
 
-Say = False
-DBlist = {1: "Programs"}  # СЮДЫ СПИСОК ТАБЛИЦ
-
 
 def WriteData(DB: int,
               st: str,
@@ -23,9 +20,6 @@ def WriteData(DB: int,
     qvest = str(qvest)
     if qvest[0] != "!":
         qvest = int(qvest)
-        if Say:
-            print(f'Write INTO `{DB}` {st} VALUES "{
-                  value}", WHERE `ID` = {qvest}')
         cursor.execute(f'''SELECT * FROM `{DB}` WHERE `ID` = "{qvest}"''')
         result = cursor.fetchone()
         if result is None:

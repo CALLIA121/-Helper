@@ -144,8 +144,8 @@ def main():
             else:
                 audio.say("Не смог распознать программу")
 
-        elif check(text, ["посчитай", "посчитать"]) >= 0:
-            index = check(text, ["посчитай", "посчитать"])
+        elif check(text, ["посчитай", "посчитать", "сколько будет"]) >= 0:
+            index = check(text, ["посчитай", "посчитать", "сколько будет"])
             try:
                 tocalculate = " ".join(textSps[index+1:])
                 tocalculate = tocalculate.replace("х", "*")

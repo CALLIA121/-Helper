@@ -5,8 +5,11 @@ HURD_UPDATE = False
 VOISE_NAME = 'Russian'
 
 PATH = None
+PATH_ME = __file__[:len(__file__) - 11]
 
-with open('config.txt', 'r', encoding='utf-8') as f:
+print(f'Load config from {PATH_ME}config.txt')
+
+with open(f'{PATH_ME}config.txt', 'r', encoding='utf-8') as f:
     lines = [line.strip().split(';') for line in f.readlines()]
     for atribute, value in lines:
         if atribute == 'PATH':

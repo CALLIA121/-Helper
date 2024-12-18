@@ -9,9 +9,10 @@ PATH_ME = __file__[:len(__file__) - 11]
 
 print(f'Load config from {PATH_ME}config.txt')
 
+CONFIG = [line.strip().split(';') for line in f.readlines()]
+
 with open(f'{PATH_ME}config.txt', 'r', encoding='utf-8') as f:
-    lines = [line.strip().split(';') for line in f.readlines()]
-    for atribute, value in lines:
+    for atribute, value in CONFIG:
         if atribute == 'PATH':
             PATH = value
 

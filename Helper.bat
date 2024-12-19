@@ -1,1 +1,0 @@
-d:\!PycharmProjects\!Helper\venv/Scripts/python.exe d:\!PycharmProjects\!Helper\starter.py

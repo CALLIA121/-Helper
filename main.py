@@ -241,12 +241,12 @@ def main():
             print("окончание обработки")
             audio.play('sound/stopFrase2.mp3')
 
-        elif check(text, ["спасибо", "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
+        elif check(text, ["спасибо", 'cпасибки', "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
             st = True
             print("окончание обработки")
             if "молодец" in text or "хорош" in text:
                 audio.play('sound/stopFrase0.mp3')
-            elif "спасибо" in text:
+            elif "спасибо" in text or 'cпасибки' in text:
                 audio.play('sound/stopFrase1.mp3')
 
         else:

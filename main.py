@@ -259,8 +259,6 @@ def main():
 
 
 if __name__ == '__main__':
-    import installer
-
     import audio
     import os
     import time

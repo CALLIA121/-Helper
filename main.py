@@ -9,7 +9,7 @@ def searchProgram(text: list, programs: list) -> str:
 
 
 def check(text: str, check: list) -> bool:
-    for checkWord in check:  
+    for checkWord in check:
         if checkWord in text:
             try:
                 return text.split().index(checkWord.split()[-1])
@@ -100,6 +100,13 @@ def main():
             except Exception as e:
                 audio.sayReady("err")
                 print(e)
+
+        elif check(text, ["привет"]) >= 0:
+            audio.say('Привет, я рада познакомиться!')
+            audio.say(
+                'Пока-что я в разработке, но буду рада, если ты оставишь отзыв в телеграмм канале моего создателя')
+            audio.say('Ссылка в консоли)')
+            print('https://t.me/DevLogSiropCALLIA')
 
         elif check(text, ["прочти", "прочитай"]) >= 0:
             audio.say(get_selected_text())
@@ -253,7 +260,7 @@ def main():
 
 if __name__ == '__main__':
     import installer
-    
+
     import audio
     import os
     import time

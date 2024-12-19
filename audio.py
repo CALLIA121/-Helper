@@ -42,6 +42,26 @@ def init():
         elif Phrase[0] == "K":
             PhraseKeys.append((Phrase[1], Phrase[2]))
 
+    if not os.path.exists(PATHMAIN + "sound/ready.mp3") or HURD_UPDATE:
+        print('Создание:', PATHMAIN + "sound/ready.mp3")
+        with open(f'{s.PATH_ME}ready.byte', 'rb') as fr:
+            with open(PATHMAIN + "sound/ready.mp3", 'wb') as fw:
+                fw.write(fr.read())
+    else:
+        print('Файл уже есть, пропуск:',
+                      PATHMAIN + "sound/ready.mp3")
+
+    if not os.path.exists(PATHMAIN + "sound/finish.mp3") or HURD_UPDATE:
+        print('Создание:', PATHMAIN + "sound/finish.mp3")
+        with open(f'{s.PATH_ME}finish.byte', 'rb') as fr:
+            with open(PATHMAIN + "sound/finish.mp3", 'wb') as fw:
+                fw.write(fr.read())
+    else:
+        print('Файл уже есть, пропуск:',
+                      PATHMAIN + "sound/finish.mp3")
+                
+
+
 
 def regizon(filePath):
     try:

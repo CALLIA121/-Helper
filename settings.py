@@ -1,4 +1,5 @@
 import sqlite3 as sq
+import os
 TIMEOUT = 10
 
 HURD_UPDATE = False
@@ -9,17 +10,59 @@ PATH_ME = __file__[:len(__file__) - 11]
 
 print(f'Load config from {PATH_ME}config.txt')
 
-CONFIG = [line.strip().split(';') for line in f.readlines()]
-
 with open(f'{PATH_ME}config.txt', 'r', encoding='utf-8') as f:
-    for atribute, value in CONFIG:
-        if atribute == 'PATH':
-            PATH = value
+    CONFIG = [line.strip().split(';') for line in f.readlines()]
+
+for atribute, value in CONFIG:
+    if atribute == 'PATH':
+        PATH = value
 
 if PATH is None:
     print('Нет PATH')
-    exit(0)
+    PATH = input('Для работы напишите путь, к дерриктории с файлами: ')
+    while True:
+        if os.path.exists(PATH):
+            break
+        else:
+            print('Дерриктории по написанному пути не существует\n. Напишите Y если нужно создать деррикторию по написанному пути, или другой путь.')
+            inp = input()
+            if inp == 'Y':
+                os.mkdir(PATH)
+            else:
+                PATH = inp
 
+if PATH[-1] != '/':
+    PATH += '/'
+
+if not os.path.exists(f"{PATH}sound"):
+    os.mkdir(f"{PATH}/sound")
+
+if not os.path.exists(f"{PATH}googleHTTPS.bat"):
+    with open(f"{PATH}/googleHTTPS.bat", 'w', encoding='utf-8') as f:
+        f.write('''
+@echo off
+setlocal
+set "query=%*"
+set "query=%query: =+%"
+start "" "%query%"
+endlocal
+
+''')
+
+if not os.path.exists(f"{PATH}googleSearch.bat"):
+    with open(f"{PATH}/googleSearch.bat", 'w', encoding='utf-8') as f:
+        f.write('''
+@echo off
+setlocal
+set "query=%*"
+set "query=%query: =+%"
+start "" "https://www.google.com/search?q=%query%"
+endlocal
+
+''')
+
+with open(f'{PATH_ME}config.txt', 'w', encoding='utf-8') as f:
+    f.write(f'PATH;{PATH}\n')
 
 Say = False
 DBlist = {1: "Programs", 2: "Data"}

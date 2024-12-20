@@ -10,7 +10,7 @@ required_modules = [
     ['numpy', 'numpy'],
     ['speech_recognition', 'SpeechRecognition'],
     ['pyaudio', 'pyaudio'],
-    ['win32', 'win32']
+    ['win32', 'pywin32']
 ]
 for module, toInstall in required_modules:
     try:

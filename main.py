@@ -102,13 +102,6 @@ def main():
                 audio.sayReady("err")
                 print(e)
 
-        elif check(text, ["привет"]) >= 0:
-            audio.say('Привет, я рада познакомиться!')
-            audio.say(
-                'Пока-что я в разработке, но буду рада, если ты оставишь отзыв в телеграмм канале моего создателя')
-            audio.say('Ссылка в консоли)')
-            print('https://t.me/DevLogSiropCALLIA')
-
         elif check(text, ["прочти", "прочитай"]) >= 0:
             audio.say(get_selected_text())
 

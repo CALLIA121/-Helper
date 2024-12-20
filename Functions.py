@@ -177,7 +177,7 @@ def change_selected_text_layout():
 
 def GogoleSearch(qvery):
     try:
-        os.system(f"{s.PATH}googleSearch.bat {qvery}")
+        os.system(f'''"{s.PATH}googleSearch.bat {qvery}"''')
         return True
     except Exception as e:
         return False
@@ -185,7 +185,7 @@ def GogoleSearch(qvery):
 
 def SearchHTTPS(qvery):
     try:
-        os.system(f"{s.PATH}googleHTTPS.bat {qvery}")
+        os.system(f'''"{s.PATH}googleHTTPS.bat" {qvery}''')
         return True
     except Exception as e:
         return False

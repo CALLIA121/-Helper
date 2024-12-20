@@ -1,10 +1,9 @@
 import installer
 import pyautogui as gui
-import win32.win32api
 import os
 import time
 
-import win32
+import win32.win32api
 import pyperclip
 
 

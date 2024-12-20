@@ -250,7 +250,7 @@ def main():
                 audio.play('sound/stopFrase1.mp3')
 
         else:
-            audio.say('я такого не умею')
+            audio.sayReady('cant')
 
         if st:
             LT = time.time() - 1.1 * s.TIMEOUT

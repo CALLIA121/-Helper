@@ -1,7 +1,8 @@
 def searchProgram(text: list, programs: list) -> str:
     print("Поиск среди: ", text)
     for namesStr, path in programs:
-        namesSps = namesStr.split('|')
+        namesStr.replace('|', '/')
+        namesSps = namesStr.split('/')
         for name in namesSps:
             if name in text:
                 return True, name, path
@@ -222,7 +223,7 @@ def main():
             except Exception as e:
                 print(e)
                 audio.sayReady("ошибка")
-        
+
         elif check(text, ["распознай текст"]) >= 0:
             win32clipboard.OpenClipboard()
             if win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_DIB):

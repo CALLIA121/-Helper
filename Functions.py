@@ -17,7 +17,7 @@ def InitMy():
 
 
 def hotkey(keys: list):
-    gui.hotkey(keys)
+    gui.hotkey(keys, interval=0.01)
     time.sleep(0.1)
 
 

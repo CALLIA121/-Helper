@@ -140,7 +140,11 @@ def main():
                         else:
                             audio.sayReady("err")
                     else:
-                        start = f'''"{result[2]}"'''
+                        start = result[2]
+                        if start[0] != '"':
+                            start = f'"{start}'
+                        if start[-1] != '"':
+                            start = f'{start}"'
                         print(f'''запуск {start}''')
                         threading.Thread(target=os.system, args=[
                                          start], daemon=True, name=result[0]).start()
@@ -218,6 +222,19 @@ def main():
             except Exception as e:
                 print(e)
                 audio.sayReady("ошибка")
+        
+        elif check(text, ["распознай текст"]) >= 0:
+            win32clipboard.OpenClipboard()
+            if win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_DIB):
+                link = '''https://www.google.com/?olud'''
+                print("проход по:", link)
+
+                if SearchHTTPS(link):
+                    audio.sayReady("start")
+                else:
+                    audio.sayReady("err")
+
+            win32clipboard.CloseClipboard()
 
         elif check(text, ["заблокируй", "заблочь"]) >= 0:  # LL
             print('''hotkey(['winleft', "L"])''')
@@ -264,6 +281,7 @@ if __name__ == '__main__':
     import time
     import settings as s
     import db
+    import win32clipboard
     from Functions import (type_text,
                            change_selected_text_layout,
                            float_to_fraction,

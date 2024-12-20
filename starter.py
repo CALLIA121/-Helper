@@ -15,4 +15,5 @@ if current_lang_id != 67699721:
         
 
 print('Start')
-os.system('''C:/Users/1/AppData/Local/Microsoft/WindowsApps/python3.12.exe d:/!PycharmProjects/!Helper/main.py''')
+PATH_ME = __file__[:len(__file__) - len('starter.py')]
+os.system(f'''"{PATH_ME}venv/Scripts/python.exe" "{PATH_ME}main.py"''')

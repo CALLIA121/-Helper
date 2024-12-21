@@ -270,7 +270,6 @@ def main():
 
 if __name__ == '__main__':
     import pytesseract
-    pytesseract.pytesseract.tesseract_cmd = r"F:\Tesseract-OCR\tesseract.exe"
     from PIL import Image, ImageGrab, ImageEnhance
     import pyperclip
     import audio
@@ -279,6 +278,7 @@ if __name__ == '__main__':
     import settings as s
     import db
     import win32clipboard
+
     from Functions import (type_text,
                            change_selected_text_layout,
                            float_to_fraction,
@@ -291,6 +291,7 @@ if __name__ == '__main__':
                            InitMy,
                            hotkey)
     import threading
+    pytesseract.pytesseract.tesseract_cmd = s.pytesseract_PATH
     InitMy()
     audio.init()
     text = get_text()

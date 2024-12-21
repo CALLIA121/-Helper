@@ -10,7 +10,8 @@ required_modules = [
     ['numpy', 'numpy'],
     ['speech_recognition', 'SpeechRecognition'],
     ['pyaudio', 'pyaudio'],
-    ['win32', 'pywin32']
+    ['win32', 'pywin32'],
+    ['pytesseract', 'pytesseract']
 ]
 for module, toInstall in required_modules:
     try:

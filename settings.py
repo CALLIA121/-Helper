@@ -1,5 +1,6 @@
 import sqlite3 as sq
 import os
+import shutil
 TIMEOUT = 10
 
 HURD_UPDATE = False
@@ -61,12 +62,16 @@ endlocal
 
 ''')
 
+if not os.path.exists(f"{PATH}Tesseract-OCR"):
+    shutil.copytree(f"{PATH_ME}!HelperData\Tesseract-OCR", f"{PATH}Tesseract-OCR")
+
 with open(f'{PATH_ME}config.txt', 'w', encoding='utf-8') as f:
     f.write(f'PATH;{PATH}\n')
 
 Say = False
 DBlist = {1: "Programs", 2: "Data"}
 DB_PATH = PATH + 'db_helper.db'
+pytesseract_PATH = PATH + r'Tesseract-OCR\tesseract.exe'
 
 
 ReadyMadePfrase = [

@@ -218,17 +218,16 @@ def main():
                 audio.sayReady("ошибка")
 
         elif check(text, ["распознай текст"]) >= 0:
-            win32clipboard.OpenClipboard()
-            if win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_DIB):
-                link = '''https://www.google.com/?olud'''
-                print("проход по:", link)
-
-                if SearchHTTPS(link):
-                    audio.sayReady("start")
-                else:
-                    audio.sayReady("err")
-
-            win32clipboard.CloseClipboard()
+            try:
+                image = ImageGrab.grabclipboard()
+                if image is None:
+                    print("Буфер обмена пуст или не содержит изображения.")
+                    continue
+                text1 = pytesseract.image_to_string(image, lang='rus+eng', config='--psm 6')
+                pyperclip.copy(text1)
+                print("Распознанный текст:", text1)
+            except Exception as e:
+                print(f"Произошла ошибка: {e}")
 
         elif check(text, ["заблокируй", "заблочь"]) >= 0:  # LL
             print('''hotkey(['winleft', "L"])''')
@@ -252,7 +251,7 @@ def main():
             print("окончание обработки")
             audio.play('sound/stopFrase2.mp3')
 
-        elif check(text, ["спасибо", 'cпасибки', "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
+        elif check(text, ["спасибо", 'стоп', "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
             st = True
             print("окончание обработки")
             if "молодец" in text or "хорош" in text:
@@ -270,6 +269,10 @@ def main():
 
 
 if __name__ == '__main__':
+    import pytesseract
+    pytesseract.pytesseract.tesseract_cmd = r"F:\Tesseract-OCR\tesseract.exe"
+    from PIL import Image, ImageGrab, ImageEnhance
+    import pyperclip
     import audio
     import os
     import time

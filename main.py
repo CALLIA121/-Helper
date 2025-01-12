@@ -223,7 +223,8 @@ def main():
                 if image is None:
                     print("Буфер обмена пуст или не содержит изображения.")
                     continue
-                text1 = pytesseract.image_to_string(image, lang='rus+eng', config='--psm 6')
+                text1 = pytesseract.image_to_string(
+                    image, lang='rus+eng', config='--psm 6')
                 pyperclip.copy(text1)
                 print("Распознанный текст:", text1)
             except Exception as e:

@@ -1,6 +1,5 @@
 import sqlite3 as sq
 import os
-import shutil
 TIMEOUT = 10
 
 HURD_UPDATE = False
@@ -35,38 +34,6 @@ if PATH is None:
 if PATH[-1] != '/':
     PATH += '/'
 
-if not os.path.exists(f"{PATH}sound"):
-    os.mkdir(f"{PATH}/sound")
-
-if not os.path.exists(f"{PATH}googleHTTPS.bat"):
-    with open(f"{PATH}/googleHTTPS.bat", 'w', encoding='utf-8') as f:
-        f.write('''
-@echo off
-setlocal
-set "query=%*"
-set "query=%query: =+%"
-start "" "%query%"
-endlocal
-
-''')
-
-if not os.path.exists(f"{PATH}googleSearch.bat"):
-    with open(f"{PATH}/googleSearch.bat", 'w', encoding='utf-8') as f:
-        f.write('''
-@echo off
-setlocal
-set "query=%*"
-set "query=%query: =+%"
-start "" "https://www.google.com/search?q=%query%"
-endlocal
-
-''')
-
-if not os.path.exists(f"{PATH}Tesseract-OCR"):
-    shutil.copytree(f"{PATH_ME}!HelperData\Tesseract-OCR", f"{PATH}Tesseract-OCR")
-
-with open(f'{PATH_ME}config.txt', 'w', encoding='utf-8') as f:
-    f.write(f'PATH;{PATH}\n')
 
 Say = False
 DBlist = {1: "Programs", 2: "Data"}

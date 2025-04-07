@@ -30,6 +30,8 @@ if PATH is None:
                 os.mkdir(PATH)
             else:
                 PATH = inp
+    with open(f'{PATH_ME}config.txt', 'w', encoding='utf-8') as f:
+        print(f'PATH;{PATH}', file=f)
 
 if PATH[-1] != '/':
     PATH += '/'
@@ -42,7 +44,7 @@ pytesseract_PATH = PATH + r'Tesseract-OCR\tesseract.exe'
 
 
 ReadyMadePfrase = [
-    ('K', 'start', 5),
+    ('K', 'start', 4),
     ('K', 'bye', 2),
     ('K', 'err', 1),
     ('K', 'stopFrase', 3),
@@ -54,8 +56,7 @@ ReadyMadePfrase = [
     ('P', 'Запускаю', 'start0'),
     ('P', 'В процессе', 'start1'),
     ('P', 'Будет сделано', 'start2'),
-    ('P', 'Так точно', 'start3'),
-    ('P', 'Хорошо', 'start4'),
+    ('P', 'Хорошо', 'start3'),
 
     ('P', 'Пока', 'bye0'),
     ('P', 'До связи', 'bye1'),

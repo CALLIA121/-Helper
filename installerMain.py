@@ -23,6 +23,3 @@ for module, toInstall in required_modules:
         subprocess.check_call(
             [sys.executable, "-m", "pip", "install", toInstall])
         print(f"Установлен модуль {module}")
-
-import instalGit
-instalGit.run()

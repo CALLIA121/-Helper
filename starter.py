@@ -1,9 +1,10 @@
-import installer
 import pyautogui as gui
+import win32.win32api
+import installer
 import os
 import time
 
-import win32.win32api
+import win32
 import pyperclip
 
 
@@ -15,5 +16,4 @@ if current_lang_id != 67699721:
         
 
 print('Start')
-PATH_ME = __file__[:len(__file__) - len('starter.py')]
-os.system(f'python "{PATH_ME}main.py"')
+os.system('''C:/Users/1/AppData/Local/Microsoft/WindowsApps/python3.12.exe d:/!PycharmProjects/!Helper/main.py''')

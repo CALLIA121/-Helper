@@ -9,9 +9,7 @@ required_modules = [
     ['pyperclip', 'pyperclip'],
     ['numpy', 'numpy'],
     ['speech_recognition', 'SpeechRecognition'],
-    ['pyaudio', 'pyaudio'],
-    ['win32', 'pywin32'],
-    ['pytesseract', 'pytesseract']
+    ['pyaudio', 'pyaudio']
 ]
 for module, toInstall in required_modules:
     try:

@@ -1,8 +1,7 @@
 def searchProgram(text: list, programs: list) -> str:
     print("Поиск среди: ", text)
     for namesStr, path in programs:
-        namesStr.replace('|', '/')
-        namesSps = namesStr.split('/')
+        namesSps = namesStr.split('|')
         for name in namesSps:
             if name in text:
                 return True, name, path
@@ -134,11 +133,7 @@ def main():
                         else:
                             audio.sayReady("err")
                     else:
-                        start = result[2]
-                        if start[0] != '"':
-                            start = f'"{start}'
-                        if start[-1] != '"':
-                            start = f'{start}"'
+                        start = f'''"{result[2]}"'''
                         print(f'''запуск {start}''')
                         threading.Thread(target=os.system, args=[
                                          start], daemon=True, name=result[0]).start()
@@ -217,18 +212,6 @@ def main():
                 print(e)
                 audio.sayReady("ошибка")
 
-        elif check(text, ["распознай текст"]) >= 0:
-            try:
-                image = ImageGrab.grabclipboard()
-                if image is None:
-                    print("Буфер обмена пуст или не содержит изображения.")
-                    continue
-                text1 = pytesseract.image_to_string(image, lang='rus+eng', config='--psm 6')
-                pyperclip.copy(text1)
-                print("Распознанный текст:", text1)
-            except Exception as e:
-                print(f"Произошла ошибка: {e}")
-
         elif check(text, ["заблокируй", "заблочь"]) >= 0:  # LL
             print('''hotkey(['winleft', "L"])''')
             os.system(
@@ -251,16 +234,16 @@ def main():
             print("окончание обработки")
             audio.play('sound/stopFrase2.mp3')
 
-        elif check(text, ["спасибо", 'стоп', "подожди", 'жди', "молодец", "пока", "хорош"]) >= 0:
+        elif check(text, ["спасибо", "стоп", 'жди', "молодец", "пока", "хорош"]) >= 0:
             st = True
             print("окончание обработки")
             if "молодец" in text or "хорош" in text:
                 audio.play('sound/stopFrase0.mp3')
-            elif "спасибо" in text or 'cпасибки' in text:
+            elif "спасибо" in text:
                 audio.play('sound/stopFrase1.mp3')
 
         else:
-            audio.sayReady('cant')
+            audio.say('я такого не умею')
 
         if st:
             LT = time.time() - 1.1 * s.TIMEOUT
@@ -277,8 +260,6 @@ if __name__ == '__main__':
     import time
     import settings as s
     import db
-    import win32clipboard
-
     from Functions import (type_text,
                            change_selected_text_layout,
                            float_to_fraction,

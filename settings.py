@@ -80,7 +80,6 @@ ReadyMadePfrase = [
     ('K', 'err', 1),
     ('K', 'stopFrase', 3),
     ('K', 'CanselFrase', 1),
-    ('K', 'cant', 1),
 
     ('P', 'Отменяю', 'CanselFrase0'),
 
@@ -97,9 +96,7 @@ ReadyMadePfrase = [
 
     ('P', 'Спасибо!', 'stopFrase0'),
     ('P', 'Всегда к вашим услугам!', 'stopFrase1'),
-    ('P', 'За что?', 'stopFrase2'),
-
-    ('P', 'Я такого не умею!', 'cant0')
+    ('P', 'За что?', 'stopFrase2')
 ]
 
 

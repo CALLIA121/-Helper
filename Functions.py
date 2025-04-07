@@ -17,7 +17,7 @@ def InitMy():
 
 
 def hotkey(keys: list):
-    gui.hotkey(keys, interval=0.01)
+    gui.hotkey(keys)
     time.sleep(0.1)
 
 
@@ -177,7 +177,7 @@ def change_selected_text_layout():
 
 def GogoleSearch(qvery):
     try:
-        os.system(f'''"{s.PATH}googleSearch.bat" {qvery}''')
+        os.system(f"{s.PATH}googleSearch.bat {qvery}")
         return True
     except Exception as e:
         return False
@@ -185,7 +185,7 @@ def GogoleSearch(qvery):
 
 def SearchHTTPS(qvery):
     try:
-        os.system(f'''"{s.PATH}googleHTTPS.bat" {qvery}''')
+        os.system(f"{s.PATH}googleHTTPS.bat {qvery}")
         return True
     except Exception as e:
         return False

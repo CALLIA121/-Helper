@@ -28,6 +28,7 @@ if PATH is None:
             inp = input()
             if inp == 'Y':
                 os.mkdir(PATH)
+                input('Скачайте архив с данными для ассистента (отсюда https://github.com/CALLIA121/-Helper/tree/HelperData). \nРаспакуйте содержимое в выбранную папку (В папке сразу должны лежать файлы)')
             else:
                 PATH = inp
     with open(f'{PATH_ME}config.txt', 'w', encoding='utf-8') as f:

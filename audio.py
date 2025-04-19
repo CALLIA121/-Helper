@@ -49,7 +49,7 @@ def init():
                 fw.write(fr.read())
     else:
         print('Файл уже есть, пропуск:',
-                      PATHMAIN + "sound/ready.mp3")
+              PATHMAIN + "sound/ready.mp3")
 
     if not os.path.exists(PATHMAIN + "sound/finish.mp3") or HURD_UPDATE:
         print('Создание:', PATHMAIN + "sound/finish.mp3")
@@ -58,9 +58,7 @@ def init():
                 fw.write(fr.read())
     else:
         print('Файл уже есть, пропуск:',
-                      PATHMAIN + "sound/finish.mp3")
-                
-
+              PATHMAIN + "sound/finish.mp3")
 
 
 def regizon(filePath):

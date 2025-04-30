@@ -52,7 +52,7 @@ def main():
             togpt = " ".join(textSps[index+1:])
             SearchHTTPS(r'https://chat.deepseek.com/a/chat/')
             audio.sayReady("start")
-            time.sleep(2)
+            time.sleep(5)
             hotkey(['Enter'])
             type_text(togpt)
             time.sleep(0.5)

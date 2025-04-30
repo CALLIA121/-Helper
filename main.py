@@ -46,6 +46,19 @@ def main():
             type_text(towrite)
             audio.sayReady("start")
 
+        elif check(text, ["gpt"]) >= 0:
+            # hello привет
+            index = check(text, ['gpt'])
+            togpt = " ".join(textSps[index+1:])
+            SearchHTTPS(r'https://chat.deepseek.com/a/chat/')
+            audio.sayReady("start")
+            time.sleep(2)
+            hotkey(['Enter'])
+            type_text(togpt)
+            time.sleep(0.5)
+            hotkey(['Enter'])
+            st = True
+
         elif check(text, ["загуглить", "загугли", 'если']) >= 0:
             # hello привет
             index = check(text, ["загуглить", "загугли", 'если'])
@@ -56,19 +69,8 @@ def main():
             else:
                 audio.sayReady("err")
 
-        elif check(text, ['дракон', 'я решил']) >= 0:
-            SearchHTTPS(
-                '''https://youtu.be/hbWVFMjK1Dk?t=2''')
-            audio.say('Мои поздравления!')
-
-        elif check(text, ['взломай']) >= 0:
-            SearchHTTPS(
-                '''https://www.youtube.com/watch?v=2bXP5VNukmY&t=7s''')
-            audio.sayReady("start")
-
-        elif check(text, ["как", "где", "что такое", "сколько это"]) >= 0:
-            index = check(text, ["как", "где", "что такое",
-                          "сколько это"])  # hello привет
+        elif check(text, ["как", "где", "что такое"]) >= 0:
+            index = check(text, ["как", "где", "что такое"])  # hello привет
             togoogle = " ".join(textSps[index:])
             if GogoleSearch(togoogle):
                 audio.sayReady("start")
@@ -144,86 +146,24 @@ def main():
             else:
                 audio.say("Не смог распознать программу")
 
-        elif check(text, ["посчитай", "посчитать", "сколько будет"]) >= 0:
-            index = check(text, ["посчитай", "посчитать", "сколько будет"])
-            try:
-                tocalculate = " ".join(textSps[index+1:])
-                tocalculate = tocalculate.replace("х", "*")
-                print("считем:", tocalculate)
-                form = tocalculate.split()
-                result = 0.0
-                d = -1
-                for dig in form:
-                    if dig in ["+", "-", "*", "/"]:
-                        d = dig
-                    elif dig in ["поизведение", "сумма", "разность", "частное"]:
-                        sl = {"поизведение": "*",
-                              "сумма": "+",
-                              "разность": "-",
-                              "частное": "/"}
-                        d = [sl[dig], 1, 0, d]
-                    else:
-                        try:
-                            dig = dig.replace(".", "")
-                            dig = dig.replace(",", ".")
-                            dig = float(dig)
-                            if d == -1:
-                                result += dig
-                            elif isinstance(d, str):
-                                if d == "+":
-                                    result += dig
-                                elif d == "-":
-                                    result -= dig
-                                elif d == "*":
-                                    result *= dig
-                                elif d == "/":
-                                    result /= dig
-                            elif isinstance(d, list):
-                                if d[1] != 1:
-                                    if d[0] == "+":
-                                        d[2] += dig
-                                    elif d[0] == "-":
-                                        d[2] -= dig
-                                    elif d[0] == "*":
-                                        d[2] *= dig
-                                    elif d[0] == "/":
-                                        d[2] /= dig
-                                else:
-                                    d[2] = dig
-                                d[1] += 1
-                                if d[1] == 3:
-                                    if d[3] == "+":
-                                        result += d[2]
-                                    elif d[3] == "-":
-                                        result -= d[2]
-                                    elif d[3] == "*":
-                                        result *= d[2]
-                                    elif d[3] == "/":
-                                        result /= d[2]
-                        except Exception as e:
-                            # %SystemRoot%\system32\rundll32.exe USER32.DLL LockWorkStation
-                            print(e)
-                print(float_to_fraction(result),
-                      float_to_fraction_with_reading(result))
-                audio.say(float_to_fraction_with_reading(result))
-                LT = time.time() + s.TIMEOUT
-                continue
-            except Exception as e:
-                print(e)
-                audio.sayReady("ошибка")
-
-        elif check(text, ["распознай текст"]) >= 0:
+        elif check(text, ["распознай текст", "что написано"]) >= 0:
             try:
                 image = ImageGrab.grabclipboard()
                 if image is None:
+                    audio.say('Скопируйте изображение')
                     print("Буфер обмена пуст или не содержит изображения.")
                     continue
                 text1 = pytesseract.image_to_string(
                     image, lang='rus+eng', config='--psm 6')
+                audio.sayReady("start")
                 pyperclip.copy(text1)
                 print("Распознанный текст:", text1)
             except Exception as e:
                 print(f"Произошла ошибка: {e}")
+
+        elif check(text, ["играл", "смотрел"]) >= 0:  # LL
+            audio.say('Да, конечно!')
+            st = True
 
         elif check(text, ["заблокируй", "заблочь"]) >= 0:  # LL
             print('''hotkey(['winleft', "L"])''')

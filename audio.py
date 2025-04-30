@@ -236,19 +236,21 @@ def Buffer():
                     break
 
 
-def listen_phrase(activation_phrase="ассистент"):
+def listen_phrase(activation_phrases=["ассистент", 'ноутбук']):
     global mode
     print("Слушаю активационную фразу...")
     FILENAME = PATHMAIN + "sound/buff.wav"
     while True:
         Buffer()
         text = regizon(FILENAME).split()
-        if activation_phrase in text:
-            print("Активационная фраза распознана.")
-            index = text.index(activation_phrase)
-            if len(text) - 1 > index:
-                print('Фраза уже содержит команду:', " ".join(text[index+1:]))
-                return " ".join(text[index+1:])
-            else:
-                print("Слушаю следующий текст...")
-                return listenMy()
+        for activation_phrase in activation_phrases:
+            if activation_phrase in text:
+                print("Активационная фраза распознана.")
+                index = text.index(activation_phrase)
+                if len(text) - 1 > index:
+                    print('Фраза уже содержит команду:',
+                          " ".join(text[index+1:]))
+                    return " ".join(text[index+1:])
+                else:
+                    print("Слушаю следующий текст...")
+                    return listenMy()
